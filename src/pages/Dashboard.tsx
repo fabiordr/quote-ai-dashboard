@@ -106,7 +106,7 @@ const Dashboard = () => {
   // Função para limpar os filtros
   const handleClearFilters = () => {
     setSearchTerm("");
-    setStatusFilter("");
+    setStatusFilter("all"); // Changed from empty string to "all"
     setStartDate(undefined);
     setEndDate(undefined);
     setCurrentPage(1);

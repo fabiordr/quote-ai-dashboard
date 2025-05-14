@@ -110,8 +110,8 @@ const SystemLogs = () => {
   // Função para limpar os filtros
   const handleClearFilters = () => {
     setSearchTerm("");
-    setLevelFilter("");
-    setEventTypeFilter("");
+    setLevelFilter("all"); // Changed from empty string to "all"
+    setEventTypeFilter("all"); // Changed from empty string to "all"
     setTaskIdFilter("");
     setStartDate(undefined);
     setEndDate(undefined);
