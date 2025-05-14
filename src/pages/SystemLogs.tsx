@@ -30,7 +30,7 @@ import {
 } from "@/components/ui/accordion";
 
 const levelOptions = [
-  { value: "", label: "Todos" },
+  { value: "all", label: "Todos" }, // Changed from empty string to "all"
   { value: "INFO", label: "INFO" },
   { value: "WARN", label: "WARN" },
   { value: "ERROR", label: "ERROR" },
@@ -39,7 +39,7 @@ const levelOptions = [
 ];
 
 const eventTypeOptions = [
-  { value: "", label: "Todos" },
+  { value: "all", label: "Todos" }, // Changed from empty string to "all"
   { value: "new_task_created", label: "Nova Tarefa Criada" },
   { value: "gemini_api_call_sent", label: "Chamada API Gemini" },
   { value: "evolution_api_send_text", label: "Envio de Texto WhatsApp" },
@@ -52,8 +52,8 @@ const SystemLogs = () => {
   
   // Estados para os filtros
   const [searchTerm, setSearchTerm] = useState("");
-  const [levelFilter, setLevelFilter] = useState("");
-  const [eventTypeFilter, setEventTypeFilter] = useState("");
+  const [levelFilter, setLevelFilter] = useState("all"); // Changed from empty string to "all"
+  const [eventTypeFilter, setEventTypeFilter] = useState("all"); // Changed from empty string to "all"
   const [taskIdFilter, setTaskIdFilter] = useState("");
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [endDate, setEndDate] = useState<Date | undefined>(undefined);
@@ -71,8 +71,8 @@ const SystemLogs = () => {
     try {
       const result = await getSystemLogs(
         searchTerm,
-        levelFilter as LogLevel,
-        eventTypeFilter,
+        levelFilter === "all" ? undefined : levelFilter as LogLevel, // Modified to handle "all" value
+        eventTypeFilter === "all" ? undefined : eventTypeFilter, // Modified to handle "all" value
         taskIdFilter || undefined,
         startDate ? format(startDate, 'yyyy-MM-dd') : undefined,
         endDate ? format(endDate, 'yyyy-MM-dd') : undefined,

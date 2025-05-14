@@ -26,7 +26,7 @@ import TaskDetailsModal from "@/components/dashboard/TaskDetailsModal";
 import { useToast } from "@/hooks/use-toast";
 
 const statusOptions = [
-  { value: "", label: "Todos" },
+  { value: "all", label: "Todos" }, // Changed from empty string to "all"
   { value: "new", label: "Nova" },
   { value: "queued_for_contact", label: "Na Fila para Contato" },
   { value: "contact_failed_retry_scheduled", label: "Falha no Contato - Agendado Retentativa" },
@@ -48,7 +48,7 @@ const Dashboard = () => {
   const { toast } = useToast();
   // Estados para os filtros
   const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all"); // Changed initial state to "all"
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [endDate, setEndDate] = useState<Date | undefined>(undefined);
   
@@ -69,7 +69,7 @@ const Dashboard = () => {
     try {
       const result = await getQuotationTasks(
         searchTerm,
-        statusFilter as QuotationTaskStatus,
+        statusFilter === "all" ? undefined : statusFilter as QuotationTaskStatus, // Modified to handle "all" value
         startDate ? format(startDate, 'yyyy-MM-dd') : undefined,
         endDate ? format(endDate, 'yyyy-MM-dd') : undefined,
         currentPage,
