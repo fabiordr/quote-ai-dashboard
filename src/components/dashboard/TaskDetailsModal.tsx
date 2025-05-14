@@ -9,8 +9,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { getLogLevelColor, getQuotationTaskDetails, retryTaskContact, cancelTask } from "@/services/api";
-import { QuotationTask } from "@/types";
+import { getQuotationTaskDetails, retryTaskContact, cancelTask } from "@/services/api";
+import { QuotationTask, getLogLevelColor } from "@/types";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
